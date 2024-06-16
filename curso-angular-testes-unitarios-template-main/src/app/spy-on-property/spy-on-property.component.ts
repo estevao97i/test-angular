@@ -7,14 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SpyOnPropertyComponent implements OnInit {
 
-  mensagem: string = 'Olá, Mundo!';
+  mensagem: any = 'Olá, Mundo!';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  get message(): string {
+  get message(): any {
     return this.mensagem;
   }
 

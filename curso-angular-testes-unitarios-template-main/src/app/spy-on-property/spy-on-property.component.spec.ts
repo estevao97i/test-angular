@@ -21,4 +21,14 @@ describe('SpyOnPropertyComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('deve retornar a mensagem correta', () => {
+    const mensagem = 'Olá, Mundo!';
+
+    // aqui está mockando o valor para 'Olá, Mundo!'
+    spyOn(component, 'message').and.returnValue(mensagem);
+
+    // verifica se o que tem no componente ta igual ao mock
+    expect(component.message).toEqual(mensagem)
+  })
+
 });
