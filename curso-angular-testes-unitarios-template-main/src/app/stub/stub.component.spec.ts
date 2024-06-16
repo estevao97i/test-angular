@@ -31,4 +31,10 @@ describe('StubComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should go to home after click Navegar para Home', () => {
+    component.goTo()
+
+    expect(router.navigate).toHaveBeenCalledWith(['/home'])
+  })
+
 });
