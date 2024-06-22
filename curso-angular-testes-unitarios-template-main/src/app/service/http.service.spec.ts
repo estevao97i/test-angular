@@ -5,6 +5,7 @@ import {
 import { TestBed } from '@angular/core/testing';
 
 import { HttpService } from './http.service';
+import { HttpHeaders } from '@angular/common/http';
 
 describe('HttpService', () => {
   let service: HttpService;
@@ -88,5 +89,29 @@ describe('HttpService', () => {
     expect(request.request.body).toBe(user)
 
     request.flush(response)
+  })
+
+  it('deve fazer requisição method PUT', () => {
+    const id = 1;
+    const answer = {"name": "opa", "email": "estevaozin@fsdnfjhsd", "age": "22"}
+
+    service.deleteUser(id).subscribe(res => {
+      expect(res).toBeNull()
+    })
+
+    const request = httpTestingController.expectOne(`${url}/users/${id}`)
+    expect(request.request.method).toBe('DELETE')
+    expect(request.request.body).toBeNull()
+
+    request.flush(null)
+  })
+
+  it('deve fazer requisição com headers', () => {
+    service.getUserWithHeaders().subscribe();
+
+    const request = httpTestingController.expectOne(`${url}/users`)
+
+    expect(request.request.headers.has('content-type')).toEqual(true)
+    expect(request.request.headers.has('Authorization')).toEqual(true)
   })
 });
