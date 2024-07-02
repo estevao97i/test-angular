@@ -20,4 +20,11 @@ describe('FixtureDetectChangeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deve verificar o titulo com detectChange()', () => {
+    const titulo = fixture.debugElement.nativeElement.querySelector('h1');
+
+    fixture.detectChanges();
+    expect(titulo.textContent).toBe('Aprendendo a usar fixture.detectChange()');
+  })
 });

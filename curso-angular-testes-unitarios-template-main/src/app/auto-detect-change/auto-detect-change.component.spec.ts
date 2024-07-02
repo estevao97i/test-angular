@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, ComponentFixtureAutoDetect } from '@angular/core/testing';
 
 import { AutoDetectChangeComponent } from './auto-detect-change.component';
+import { By } from '@angular/platform-browser';
 
 
 describe('AutoDetectChangeComponent', () => {
@@ -10,6 +11,11 @@ describe('AutoDetectChangeComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ AutoDetectChangeComponent ],
+      providers: [
+        {
+          provide: ComponentFixtureAutoDetect, useValue: true
+        }
+      ]
     })
     .compileComponents();
 
@@ -20,4 +26,13 @@ describe('AutoDetectChangeComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('deve ser emojin', () => {
+    let emj = fixture.debugElement.query(By.css('h1')).nativeElement;
+    let btn = fixture.debugElement.nativeElement.querySelector('button');
+
+    btn.click();
+
+    expect(emj.textContent).toBe(component.emoji);
+  })
 });
